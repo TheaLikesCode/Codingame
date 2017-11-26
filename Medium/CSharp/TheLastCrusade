@@ -1,0 +1,134 @@
+using System;
+using System.Linq;
+using System.IO;
+using System.Text;
+using System.Collections;
+using System.Collections.Generic;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Player
+{
+    const string ENTRY_TOP      = "TOP";
+    const string ENTRY_LEFT     = "LEFT";
+    const string ENTRY_RIGHT    = "RIGHT";
+    const string DOWN           = "DOWN";
+    const string LEFT           = "LEFT";
+    const string RIGHT          = "RIGHT";
+        
+    static void Main(string[] args)
+    {
+       
+        
+        string[] inputs;
+        inputs = Console.ReadLine().Split(' ');
+        int gridWidth = int.Parse(inputs[0]); // number of columns.
+        int gridHeight = int.Parse(inputs[1]); // number of rows.
+        
+        int[,] grid = new int[gridHeight, gridWidth]; 
+        
+  
+        Dictionary<int, Dictionary<string,string>> roomtypes = GenerateDictionary();
+
+
+        for (int i = 0; i < gridHeight; i++)
+        {
+            string[] integers = Console.ReadLine().Split(' '); // represents a line in the grid and contains W integers. Each integer represents one room of a given type.
+            for(int j = 0; j < gridWidth; j++){
+                grid[i,j] = int.Parse(integers[j]);
+            }
+        }
+        
+        int EX = int.Parse(Console.ReadLine()); // the coordinate along the X axis of the exit (not useful for this first mission, but must be read).
+
+        // game loop
+        while (true)
+        {
+            inputs = Console.ReadLine().Split(' ');
+            int indyPosX = int.Parse(inputs[0]);
+            int indyPosY = int.Parse(inputs[1]);
+            string entrancePoint = inputs[2];
+
+            int currentRoomType = grid[indyPosY,indyPosX];
+            Dictionary<string,string> possibleMoves = roomtypes[currentRoomType];
+          
+            switch (possibleMoves[entrancePoint]) {
+                case DOWN:
+                    indyPosY++;
+                    break;
+                case LEFT:
+                    indyPosX--;
+                    break;
+                case RIGHT:
+                    indyPosX++;
+                    break;
+            }
+
+           Console.WriteLine(indyPosX + " " + indyPosY);
+        }
+    }
+    
+    static Dictionary<int, Dictionary<string,string>> GenerateDictionary(){
+        
+        
+        var dict = new Dictionary<int, Dictionary<string,string>> ();
+
+
+        dict[1] = new Dictionary<string, string>(){
+            {ENTRY_LEFT, DOWN},
+            {ENTRY_RIGHT, DOWN},
+            {ENTRY_TOP, DOWN}
+        };
+       
+        dict[2] = new Dictionary<string, string>(){
+            {ENTRY_LEFT, RIGHT},
+            {ENTRY_RIGHT, LEFT}
+        };
+               
+        dict[3] = new Dictionary<string, string>(){
+            {ENTRY_TOP, DOWN}
+        };
+       
+        dict[4] = new Dictionary<string, string>(){
+            {ENTRY_RIGHT, DOWN},
+            {ENTRY_TOP, LEFT}
+        };
+        dict[5] = new Dictionary<string, string>(){
+            {ENTRY_LEFT, DOWN},
+            {ENTRY_TOP, RIGHT}
+        };
+        dict[6] = new Dictionary<string, string>(){
+            {ENTRY_LEFT, RIGHT},
+            {ENTRY_RIGHT, LEFT},
+        };
+        dict[7] = new Dictionary<string, string>(){
+            {ENTRY_RIGHT, DOWN},
+            {ENTRY_TOP, DOWN}
+        };
+        dict[8] = new Dictionary<string, string>(){
+            {ENTRY_LEFT, DOWN},
+            {ENTRY_RIGHT, DOWN},
+        };
+        dict[9] = new Dictionary<string, string>(){
+            {ENTRY_LEFT, DOWN},
+            {ENTRY_TOP, DOWN}
+        };
+        dict[10] = new Dictionary<string, string>(){
+            {ENTRY_TOP, LEFT}
+        };
+        dict[11] = new Dictionary<string, string>(){
+            {ENTRY_TOP, RIGHT}
+        };
+        dict[12] = new Dictionary<string, string>(){
+            {ENTRY_RIGHT, DOWN},
+        };
+        dict[13] = new Dictionary<string, string>(){
+            {ENTRY_LEFT, DOWN},
+        };
+        
+        return dict;
+
+    }
+}

@@ -1,0 +1,41 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        int numberOfHorses = in.nextInt(); //The number of horses
+        
+        int[] horsestrengths = new int[numberOfHorses];
+        
+        for (int i = 0; i < numberOfHorses; i++) {
+            int horseStrength = in.nextInt();
+            horsestrengths[i] = horseStrength;
+        }
+        
+        Arrays.sort(horsestrengths);
+        int smallestDifference = Integer.MAX_VALUE;
+        
+        for(int i = 0; i < horsestrengths.length-1; i++){
+            
+            int difference = horsestrengths[i+1] - horsestrengths[i];
+            
+            if(difference < smallestDifference){
+                smallestDifference = difference;
+            }
+            
+        }
+
+
+        // Write an action using System.out.println()
+        // To debug: System.err.println("Debug messages...");
+
+        System.out.println(smallestDifference);
+    }
+}

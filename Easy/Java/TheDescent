@@ -1,0 +1,37 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * The while loop represents the game.
+ * Each iteration represents a turn of the game
+ * where you are given inputs (the heights of the mountains)
+ * and where you have to print an output (the index of the mountain to fire on)
+ * The inputs you are given are automatically updated according to your last actions.
+ **/
+class Player {
+
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+
+        byte mountainIndex = 0;
+       
+        // game loop
+        while (true) {
+            byte highest = 0;
+           
+
+            for (byte i = 0; i < 8; i++) {
+                byte mountainH = in.nextByte(); // represents the height of one mountain.
+                
+                if(mountainH > highest){
+                    highest = mountainH;
+                    mountainIndex = i;
+                    
+                }
+            }
+
+            System.out.println(mountainIndex); // The index of the mountain to fire on.
+        }
+    }
+}

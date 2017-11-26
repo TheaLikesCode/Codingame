@@ -1,0 +1,37 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        int letterWidth = in.nextInt();
+        int letterHeight = in.nextInt();
+        
+        if (in.hasNextLine()) {
+            in.nextLine();
+        }
+        
+        String sentenceToParse = in.nextLine().toUpperCase();
+       
+        for (int i = 0; i < letterHeight; i++) {
+            String AsciiAlphabetRow = in.nextLine();
+            
+            for(char c : sentenceToParse.toCharArray()){
+                
+                int index = Character.isLetter(c) ? c - 'A' : 26;
+
+                System.out.print(AsciiAlphabetRow.substring(index * letterWidth, (index * letterWidth) + letterWidth));
+
+            }
+            
+            System.out.println();
+        }
+
+    }
+}

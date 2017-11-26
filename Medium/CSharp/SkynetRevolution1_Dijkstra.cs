@@ -124,7 +124,7 @@ class Player
         
         while(nodes.Count != 0)
         { 
-           nodes.Sort((a, b) => distances[a] - distances[b] );
+           nodes.Sort((a, b) => distances[a] - distances[b]);
 
             int closest = nodes[0];
             nodes.RemoveAt(0);

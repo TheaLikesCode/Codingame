@@ -1,0 +1,36 @@
+using System;
+using System.Linq;
+using System.IO;
+using System.Text;
+using System.Collections;
+using System.Collections.Generic;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution
+{
+    static void Main(string[] args)
+    {
+        int widthOfLetter = int.Parse(Console.ReadLine());
+        int heightOfLetter = int.Parse(Console.ReadLine());
+        string sentenceToParse = Console.ReadLine().ToLower();
+        
+        for (int i = 0; i < heightOfLetter; i++)
+        {
+            string AsciiAlphabetRow = Console.ReadLine();
+            
+            foreach(char c in sentenceToParse){
+                
+                int index = char.IsLetter(c) ? c - 'a' : 26;
+                Console.Write(AsciiAlphabetRow.Substring(index * widthOfLetter, widthOfLetter));
+                
+            }
+          
+            Console.WriteLine();
+        }
+    
+       
+    }
+}
